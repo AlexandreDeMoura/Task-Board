@@ -113,6 +113,16 @@
     padding: 0.75rem;
     margin-bottom: 2rem;
   }
+}
+.user-input__buttons-container {
+  align-self: flex-end;
+  display: flex;
+
+  .user-input__cancel-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
 
   button {
     cursor: pointer;
@@ -120,7 +130,9 @@
     width: 7rem;
     border-radius: 5px;
     border: none;
-    align-self: flex-end;
+  }
+  .user-input__button-off {
+    cursor: not-allowed !important;
   }
 }
 

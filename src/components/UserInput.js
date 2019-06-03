@@ -42,19 +42,34 @@ class UserInput extends Component {
     });
   };
 
-  handleButtonClick = event => {
+  handleCancelClick = event => {
     event.preventDefault();
-    this.props.getCardData(
-      this.state.userInputTitle,
-      this.state.emergencyToActivate,
-      this.state.userInputDetails
-    );
     this.setState({
-      isInputBarClicked: false,
-      userInputTitle: "",
-      userInputDetails: "",
-      emergencyToActivate: ""
+      isInputBarClicked: false
     });
+  };
+
+  handleButtonSubmitClick = event => {
+    event.preventDefault();
+    const {
+      userInputTitle,
+      emergencyToActivate,
+      userInputDetails
+    } = this.state;
+
+    if (userInputTitle && emergencyToActivate) {
+      this.props.getCardData(
+        userInputTitle,
+        emergencyToActivate,
+        userInputDetails
+      );
+      this.setState({
+        isInputBarClicked: false,
+        userInputTitle: "",
+        userInputDetails: "",
+        emergencyToActivate: ""
+      });
+    }
   };
 
   render() {
@@ -173,7 +188,26 @@ class UserInput extends Component {
                   : "lighter-background dark-front darker-border"
               }
             />
-            <button onClick={this.handleButtonClick}>Create</button>
+            <div className="user-input__buttons-container">
+              <button
+                className={`user-input__cancel-button ${
+                  this.props.isDarkModeSelected ? "light-font" : "darker-font"
+                }`}
+                onClick={this.handleCancelClick}
+              >
+                Cancel
+              </button>
+              <button
+                className={
+                  this.state.userInputTitle && this.state.emergencyToActivate
+                    ? undefined
+                    : "user-input__button-off"
+                }
+                onClick={this.handleButtonSubmitClick}
+              >
+                Create
+              </button>
+            </div>
           </div>
         ) : (
           undefined
