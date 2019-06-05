@@ -42,15 +42,13 @@ class UserInput extends Component {
     });
   };
 
-  handleCancelClick = event => {
-    event.preventDefault();
+  handleCancelClick = () => {
     this.setState({
       isInputBarClicked: false
     });
   };
 
-  handleButtonSubmitClick = event => {
-    event.preventDefault();
+  handleButtonSubmitClick = () => {
     const {
       userInputTitle,
       emergencyToActivate,
@@ -218,8 +216,8 @@ class UserInput extends Component {
 }
 
 UserInput.propTypes = {
-  getCardData: PropTypes.func.isRequired,
-  isDarkModeSelected: PropTypes.bool.isRequired
+  getCardData: PropTypes.func,
+  isDarkModeSelected: PropTypes.bool
 };
 
 export default UserInput;
